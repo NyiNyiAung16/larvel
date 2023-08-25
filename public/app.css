@@ -1,0 +1,86 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    padding: 0px 18px;
+}
+
+.blog{
+    background-color: yellow;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+.nav{
+    background-color: rgb(58, 108, 184);
+    padding: 5px;
+    margin-bottom: 10px;
+    box-shadow:1px 1px 3px rgb(58, 108, 184);
+}
+
+.nav > ul {
+    display: flex;
+    gap: 10px;
+    font-size: 1.3rem;
+    justify-content: center;
+    list-style: none;
+}
+
+.nav > ul > li > a{
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 1s linear;
+}
+
+.nav > ul > li > a:hover {
+    background-color: rgb(41, 51, 62);
+}
+
+form{
+    max-width: 450px;
+    margin: 10px auto;
+}
+
+form label {
+    display: block;
+    color: rgb(171, 166, 166);
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+form input{
+    width: 100%;
+    margin: 5px 0px;
+    border-radius: 5px;
+    border: 1px solid lightskyblue;
+    padding: 7px;
+}
+
+form input:focus{
+    outline: none;
+}
+
+form button{
+    border: 1px solid lightskyblue;
+    background-color: transparent;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .5s ease-in;
+}
+
+form button:hover{
+    background-color: lightcyan;
+}
+
+.blogBox{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 20px;
+}
