@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +21,7 @@ Route::middleware('auth-user')->group(function () {
     Route::get('/', [BlogController::class,'index']);
     Route::get('/blogs/{blog:slug}', [BlogController::class,'show']);
     Route::post('/logout',[AuthController::class,'logout']);
+    Route::post('/blogs/{blog:slug}/comments',[CommentController::class,'store']);
 });
 
 

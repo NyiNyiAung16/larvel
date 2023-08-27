@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -15,10 +19,8 @@ body{
 }
 
 .nav{
-    background-color: rgb(58, 108, 184);
     padding: 5px;
     margin-bottom: 10px;
-    box-shadow:1px 1px 3px rgb(58, 108, 184);
 }
 
 .nav > ul {
@@ -41,42 +43,61 @@ body{
     background-color: rgb(41, 51, 62);
 }
 
-form{
-    max-width: 450px;
+.form-control form{
+    max-width: 470px;
     margin: 10px auto;
+    border: 1px solid rgb(0, 0, 0,0.5);
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 3px 10px rgb(130, 127, 127);
 }
 
-form label {
+.form-control form h3{
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.form-control form label {
     display: block;
     color: rgb(171, 166, 166);
     font-size: 15px;
     letter-spacing: 1px;
 }
 
-form input{
+.form-control form input{
     width: 100%;
-    margin: 5px 0px;
-    border-radius: 5px;
-    border: 1px solid lightskyblue;
-    padding: 7px;
+    color: lightskyblue;
+    background:none;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid lightskyblue;
+    padding: 3px;
+    
 }
 
-form input:focus{
+.form-control form input:focus{
     outline: none;
 }
 
-form button{
-    border: 1px solid lightskyblue;
-    background-color: transparent;
-    border-radius: 5px;
-    padding: 5px;
+.form-control form .button{
     font-size: 15px;
+    background-color: transparent;
+    border: 1px solid lightskyblue;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 10px;
     cursor: pointer;
     transition: all .5s ease-in;
 }
 
-form button:hover{
+.form-control form button:hover{
     background-color: lightcyan;
+}
+
+.form-control form button:active{
+    background-color: rgb(100, 100, 255);
+    color: #fff;
 }
 
 .blogBox{

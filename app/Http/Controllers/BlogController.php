@@ -11,7 +11,7 @@ class BlogController extends Controller
     
     function index() {
         return view('blogs.index',[
-            'blogs' => Blog::with('category','author')
+            'blogs' => Blog::with('category','author','comments')
             ->latest()
             ->filter(request(['search','category','author']))
             ->paginate(6)
@@ -19,8 +19,9 @@ class BlogController extends Controller
     }
 
     function show(Blog $blog) {
+
         return view('blogs.show',[
-            'blog'=> $blog,
+            'blog'=> $blog->load('comments','author'),
             'randomBlogs'=>Blog::inRandomOrder()->take(3)->get()->load('category','author')
         ]);
     }

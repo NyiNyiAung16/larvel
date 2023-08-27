@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -43,7 +44,10 @@ class DatabaseSeeder extends Seeder
     //     'category_id'=>$category2->id
     //    ]);
 
-    Blog::factory(50)->create();
+        Blog::factory(50)
+        ->has(Comment::factory()->count(4))
+        ->create();
+        
 
        
 

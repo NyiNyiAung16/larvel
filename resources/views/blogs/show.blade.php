@@ -1,7 +1,7 @@
 
 <x-layout>
-    <!-- singloe blog section -->
-    <div class="container mb-3" style="border-bottom: 1px solid gray">
+    <!-- single blog section -->
+    <div class="container mb-3">
       <div class="row">
         <div class="col-md-6 mx-auto text-center">
           <img
@@ -10,7 +10,6 @@
             alt="..."
           />
           <h3 class="my-3">{{ $blog->title }}</h3>
-          <p class="lh-md">{{ $blog->body }}</p>
           <div>
             <div class="d-flex gap-4 justify-content-center">
                 <span>
@@ -21,12 +20,22 @@
             <p class="badge bg-primary">
               <a href="/categories/{{$blog->category->name}}" class="text-white text-decoration-none">{{ $blog->category->name }}</a>
             </p>
-        </div>
+          </div>
+          <p class="lh-md">{{ $blog->body }}</p>
         </div>
       </div>
     </div>
 
-    <!-- subscribe new blogs -->
+    <div class="container">
+      <form class="container " style="width: 500px;" action="/blogs/{{$blog->slug}}/comments" method="post">
+        @csrf
+        <label for="" class="text-secondary">Comment Here</label>
+        <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
+        <button class="btn btn-primary my-2" type="submit">comment</button>
+      </form>
+    </div>
+
+    <x-comments :comments="$blog->comments()->latest()->get()" />
     <x-subscribe />
     <x-blogs-you-may-like-section :randomBlogs="$randomBlogs" />
     <!-- footer -->
