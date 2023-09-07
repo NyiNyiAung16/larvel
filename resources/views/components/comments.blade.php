@@ -6,5 +6,8 @@
     @foreach ($comments as $comment)
         <x-single-comment :comment="$comment" /> 
     @endforeach
+    <div class="d-flex justify-content-center">
+        {{$comments->links()}}
+    </div>
 
   </div>

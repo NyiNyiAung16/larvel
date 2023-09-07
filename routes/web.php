@@ -3,7 +3,10 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\subscribeController;
+use App\Mail\WelcomeEmail;
 use App\Models\Comment;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +19,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/', [BlogController::class,'index']);
+Route::get('/blogs/{blog:slug}', [BlogController::class,'show'])->name('blog.show');
 Route::middleware('auth-user')->group(function () {
-    Route::get('/', [BlogController::class,'index']);
-    Route::get('/blogs/{blog:slug}', [BlogController::class,'show']);
     Route::post('/logout',[AuthController::class,'logout']);
     Route::post('/blogs/{blog:slug}/comments',[CommentController::class,'store']);
+    Route::post('/blogs/{blog:slug}/subscribe',[subscribeController::class,'subscribe'])->name('blogs.toggle');
+    Route::delete('/blogs/comments/{comment:id}/delete',[CommentController::class,'delete']);
+    Route::get('/blogs/comments/{comment:id}/edit',[CommentController::class,'edit']);
+    Route::put('/blogs/comments/{comment:id}/edit',[CommentController::class,'update']);
 });
 
 

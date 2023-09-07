@@ -105,3 +105,8 @@ body{
     grid-template-columns: repeat(3,1fr);
     grid-gap: 20px;
 }
+
+.comment .icon{
+    border: none;
+    background: none;
+}

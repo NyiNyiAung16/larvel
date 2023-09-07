@@ -25,6 +25,14 @@ class Blog extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function subscribedUsers(){
+        return $this->belongsToMany(User::class,'blogs_users');
+    }
+
+    public function isSubscribed(){
+        return $this->subscribedUsers->contains('id',auth()->id());
+    }
+
     public function scopeFilter($query,$filter){
      
         $query->when($filter['search'] ?? null, function ($query) use($filter)

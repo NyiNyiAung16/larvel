@@ -50,6 +50,10 @@ class User extends Authenticatable
         return $this->hasMany(Blog::class,'user_id');
     }
 
+    public function subscribedBlogs(){
+        return $this->belongsToMany(Blog::class,'blogs_users');
+    }
+
     protected function is_admin(): Attribute
     {
         return Attribute::make(
