@@ -10,21 +10,23 @@
         </div>
       </div>
       <div  class="comment d-flex flex-column gap-2">
-          @if (auth()->id() === $comment->user->id)
-            <form action="/blogs/comments/{{$comment->id}}/edit" method="GET">
+          @can('edit',$comment)
+            <form action="/blogs/comments/edit/{{$comment->id}}" method="GET">
               <button type="submit" class="icon">
                 <i class="fa-solid fa-pen text-secondary cursor-wait"></i>
               </button>
             </form>
+          @endcan
 
-            <form action="/blogs/comments/{{$comment->id}}/delete" method="post">
+          @can('delete',$comment)
+            <form action="/blogs/comments/delete/{{$comment->id}}" method="post">
               @csrf
               @method('delete')
               <button type="submit" class="icon">
                 <i class="fa-solid fa-trash text-danger"></i>
               </button>
             </form>
-          @endif
+          @endcan
       </div>
     </div>
     <div class="card-content my-3">

@@ -41,6 +41,6 @@ class CommentController extends Controller
         $c = $comment->where('id',$comment->id)->get();
         $c[0]->body = $commentBody;
         $c[0]->update();
-        return redirect()->route('blog.show',[$comment->blog]);
+        return redirect('/blogs/'.$comment->blog->slug);
     }
 }

@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         Blog::factory(50)
         ->has(Comment::factory()->count(4))
-        ->create();
+        ->create([]);
         
 
        
