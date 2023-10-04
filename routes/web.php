@@ -40,6 +40,7 @@ Route::middleware('auth-user')->group(function () {
     Route::delete('/blogs/comments/delete/{comment}',[CommentController::class,'delete'])->middleware('can:delete,comment');
     Route::get('/blogs/comments/edit/{comment}',[CommentController::class,'edit'])->middleware('can:edit,comment');
     Route::put('/blogs/comments/update/{comment}',[CommentController::class,'update'])->middleware('can:edit,comment');
+    Route::post('/subscribeNewBlogs',[subscribeController::class,'subscribeNewBlogs']);
 });
 
 

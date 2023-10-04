@@ -44,6 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'is_subscribe' => 'boolean'
     ];
 
     public function blogs(){
@@ -53,7 +54,7 @@ class User extends Authenticatable
     public function subscribedBlogs(){
         return $this->belongsToMany(Blog::class,'blogs_users');
     }
-
+    
     protected function is_admin(): Attribute
     {
         return Attribute::make(

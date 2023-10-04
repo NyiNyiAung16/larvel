@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Mail\Subscriber;
 use App\Models\Blog;
 use App\Models\Category;
+use App\Models\SubscribeNewBlog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -25,7 +28,11 @@ class AdminController extends Controller
         $cleanData = $request->validated();
         $cleanData['user_id'] = auth()->id();
         $cleanData['photo'] = request('photo')->store('/images');
-        Blog::create($cleanData);
+        $newBlog = Blog::create($cleanData);
+        
+        SubscribeNewBlog::all()->each(function($user) use($newBlog) {
+            Mail::to($user->email)->queue(new Subscriber($newBlog));
+        });
         return redirect()->route('admin.dashboard');
     }
 
