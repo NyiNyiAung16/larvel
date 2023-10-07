@@ -21,15 +21,20 @@ class subscribeController extends Controller
 
     public function subscribeNewBlogs(){
         if(auth()->user()->is_subscribe){
+            $cleanData = request()->validate([
+                'email' => ['required',Rule::exists('subscribe_new_blogs','email')]
+            ]);
             User::find(auth()->id())->update(['is_subscribe'=> false]);
-            SubscribeNewBlog::where('email',request('email'))->delete();
+            SubscribeNewBlog::where('email',$cleanData)->delete();
+            return back()->with('success','Unsubscribe is successful.');
         }else{
-            User::find(auth()->id())->update(['is_subscribe'=> true]);
             $cleanData = request()->validate([
                 'email' => ['required',Rule::unique('subscribe_new_blogs','email')]
             ]);
             SubscribeNewBlog::create($cleanData);
+            User::find(auth()->id())->update(['is_subscribe'=> true]);
+            return back()->with('success','Subscribe is now successfully.');
         }  
-        return back();
+        
     }
 }

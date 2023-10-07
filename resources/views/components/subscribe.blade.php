@@ -16,11 +16,13 @@
           @error('email')
               <p class="text-danger">{{ $message }}</p>
           @enderror
-          @if (auth()->user()->is_subscribe)
-              <button type="submit" class="btn btn-danger" >Unsubscribe</button>
-          @else
-              <button type="submit" class="btn btn-primary">Subscribe Now</button>
-          @endif  
+          @auth
+            @if (auth()->user()->is_subscribe)
+                <button type="submit" class="btn btn-danger" >Unsubscribe</button>
+            @else
+                <button type="submit" class="btn btn-primary">Subscribe Now</button>
+            @endif  
+          @endauth
         </form>
       </div>
     </div>
